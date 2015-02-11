@@ -111,12 +111,12 @@ int main()
                 block->stable = true;
 
                 // Set new ground
-      /*          for(int x=xPos; x<xPos+100; x++)
+                for(int x=xPos; x<xPos+100; x++)
                 {
                     cerr << "ground prob: " << ground[x]-50 << endl;
                     ground[x] -= 50;
                 }
-        */
+
             }
             else
             {
