@@ -108,12 +108,14 @@ int main()
             {
                 // Move on top of the next block
                 deltaY = highest.y - yPos - 50;
+                cerr << "deltaY " << deltaY << endl;
+
                 block->stable = true;
 
                 // Set new ground
                 for(int x=xPos; x<xPos+100; x++)
                 {
-                    cerr << "ground prob: " << ground[x]-50 << endl;
+                    //cerr << "ground prob: " << ground[x]-50 << endl;
                     ground[x] -= 50;
                 }
 
