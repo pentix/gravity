@@ -19,7 +19,7 @@ public:
 
     bool stable;
 
-    block();
+    block(sf::Vector2i pos);
 };
 
 

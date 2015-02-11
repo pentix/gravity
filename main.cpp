@@ -58,7 +58,7 @@ int main()
         // Mouse
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && eventTimer.getElapsedTime().asMilliseconds() > 100)
         {
-            blocks.push_back(new block);
+            blocks.push_back(new block(sf::Mouse::getPosition(app)));
             renderList.push_back(&blocks[blocks.size()-1]->sprite);
 
             eventTimer.restart();
@@ -88,9 +88,10 @@ int main()
             float xPos = block->sprite.getPosition().x;
             float yPos = block->sprite.getPosition().y;
 
+            cerr << "x " << xPos << "   y " << yPos << endl;
 
             // Check for each pixel
-            sf::Vector2f highest(0, 0);
+            sf::Vector2f highest(0, 600);
             for(int x=xPos; x<xPos+100; x++)
             {
                 if(ground[x] > highest.y)
@@ -100,6 +101,8 @@ int main()
                 }
             }
 
+            cerr << "Highest x " << highest.x << "   y" << highest.y << endl;
+
             float deltaY;
             if(highest.y < yPos+50+block->speed.y)
             {
@@ -108,10 +111,12 @@ int main()
                 block->stable = true;
 
                 // Set new ground
-                for(int x=xPos; x<xPos+100; x++)
+      /*          for(int x=xPos; x<xPos+100; x++)
                 {
+                    cerr << "ground prob: " << ground[x]-50 << endl;
                     ground[x] -= 50;
                 }
+        */
             }
             else
             {
@@ -121,7 +126,7 @@ int main()
 
 
 
-            block->sprite.move(0, deltaY);
+            block->sprite.move(10, deltaY);
 
             #ifdef DEBUG
                 cerr << "New Position: x " << block->sprite.getPosition().x << " y " << block->sprite.getPosition().y << "  (deltaY " << deltaY << ")" << endl;
@@ -156,6 +161,13 @@ int main()
 
         // Update the window
         app.display();
+    }
+
+
+    // Clear blocks
+    for(auto block : blocks)
+    {
+        delete block;
     }
 
     return EXIT_SUCCESS;
