@@ -62,6 +62,9 @@ int main()
             renderList.push_back(&blocks[blocks.size()-1]->sprite);
 
             eventTimer.restart();
+
+            for(int x=0; x<800; x++)
+                ground[x] -= 100;
         }
 
 
@@ -113,11 +116,12 @@ int main()
                 block->stable = true;
 
                 // Set new ground
-                for(int x=xPos; x<xPos+100; x++)
+  /*              for(int x=xPos; x<xPos+100; x++)
                 {
                     //cerr << "ground prob: " << ground[x]-50 << endl;
                     ground[x] -= 50;
                 }
+    */
 
             }
             else
@@ -128,7 +132,7 @@ int main()
 
 
 
-            block->sprite.move(10, deltaY);
+            block->sprite.move(0, deltaY);
 
             #ifdef DEBUG
                 cerr << "New Position: x " << block->sprite.getPosition().x << " y " << block->sprite.getPosition().y << "  (deltaY " << deltaY << ")" << endl;
